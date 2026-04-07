@@ -1,10 +1,12 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { page } from '$app/stores';
 
 	let mobileOpen = $state(false);
 
 	const navItems = [
-		{ href: '/weapons', label: 'Weapons' }
+		{ href: '/weapons', label: 'Weapons' },
+		{ href: '/armor', label: 'Armor' }
 	];
 </script>
 
@@ -12,14 +14,14 @@
 	<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 		<div class="flex h-16 items-center justify-between">
 			<div class="flex items-center gap-8">
-				<a href="/" class="text-xl font-bold text-amber-400 tracking-wide">FFI</a>
+				<a href={base + '/'} class="text-xl font-bold text-amber-400 tracking-wide">FFI</a>
 
 				<div class="hidden sm:flex gap-1">
 					{#each navItems as item}
 						<a
-							href={item.href}
+							href={base + item.href}
 							class="rounded-md px-4 py-2 text-sm font-medium transition-colors
-								{$page.url.pathname.startsWith(item.href)
+								{$page.url.pathname.startsWith(base + item.href)
 								? 'bg-gray-700 text-white'
 								: 'text-gray-300 hover:bg-gray-800 hover:text-white'}"
 						>
@@ -51,10 +53,10 @@
 		<div class="sm:hidden border-t border-gray-700 px-4 pb-3 pt-2 space-y-1">
 			{#each navItems as item}
 				<a
-					href={item.href}
+					href={base + item.href}
 					onclick={() => (mobileOpen = false)}
 					class="block rounded-md px-3 py-2 text-base font-medium transition-colors
-						{$page.url.pathname.startsWith(item.href)
+						{$page.url.pathname.startsWith(base + item.href)
 						? 'bg-gray-700 text-white'
 						: 'text-gray-300 hover:bg-gray-800 hover:text-white'}"
 				>
